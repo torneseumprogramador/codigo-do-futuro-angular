@@ -84,6 +84,33 @@
         </div>
     </div>
 </section>
+
+
+<section>
+    <div *ngIf="clientes.length == 0" class="alert alert-primary" role="alert">
+        This is a primary alert—check it out!
+    </div>
+    <table *ngIf="clientes.length > 0" class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Endereço</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clientes">
+            <th scope="row">{{cliente.id}}</th>
+            <td>{{cliente.nome}}</td>
+            <td>{{cliente.telefone | formatarTelefone}}</td>
+            <td>{{cliente.endereco}}</td>
+          </tr>
+        </tbody>
+    </table>
+</section>
+
+
 <section class="page-section bg-primary text-white mb-0" id="about">
     <div class="container">
         <!-- About Section Heading-->
