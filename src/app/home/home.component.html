@@ -97,6 +97,8 @@
             <th scope="col">Nome</th>
             <th scope="col">Telefone</th>
             <th scope="col">Endereço</th>
+            <th scope="col">Data</th>
+            <th scope="col">Valor</th>
           </tr>
         </thead>
         <tbody>
@@ -105,6 +107,8 @@
             <td>{{cliente.nome}}</td>
             <td>{{cliente.telefone | formatarTelefone}}</td>
             <td>{{cliente.endereco}}</td>
+            <td>{{cliente.data | date: 'dd/MM/yyyy'}}</td>
+            <td>{{cliente.valor | currency }}</td>
           </tr>
         </tbody>
     </table>
