@@ -86,37 +86,6 @@
 </section>
 
 
-<section>
-    <div *ngIf="clientes.length == 0" class="alert alert-primary" role="alert">
-        This is a primary alert—check it out!
-    </div>
-    <table *ngIf="clientes.length > 0" class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Endereço</th>
-            <th scope="col">Data</th>
-            <th scope="col">Valor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let cliente of clientes">
-            <th scope="row">{{cliente.id}}</th>
-            <td>{{cliente.nome}}</td>
-            <td>{{cliente.cpf}}</td>
-            <td>{{cliente.telefone | formatarTelefone}}</td>
-            <td>{{cliente.endereco}}</td>
-            <td>{{cliente.data | date: 'dd/MM/yyyy'}}</td>
-            <td>{{cliente.valor | currency }}</td>
-          </tr>
-        </tbody>
-    </table>
-</section>
-
-
 <section class="page-section bg-primary text-white mb-0" id="about">
     <div class="container">
         <!-- About Section Heading-->
@@ -162,53 +131,53 @@
                 <!-- To make this form functional, sign up at-->
                 <!-- https://startbootstrap.com/solution/contact-forms-->
                 <!-- to get an API token!-->
-                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                <form id="contactForm">
                     <!-- Name input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" data-sb-can-submit="no">
-                        <label for="name">Full name</label>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        <input class="form-control" id="nome" type="text" value="{{cliente.nome}}" placeholder="Digite o seu nome...">
+                        <label for="nome">Nome</label>
                     </div>
                     <!-- Email address input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" data-sb-can-submit="no">
-                        <label for="email">Email address</label>
-                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                        <input class="form-control" id="endereco" name="endereco" type="text" [(ngModel)]="cliente.endereco" placeholder="Digite seu endereço">
+                        <label for="email">Endereço</label>
                     </div>
-                    <!-- Phone number input-->
-                    <div class="form-floating mb-3">
-                        <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" data-sb-can-submit="no">
-                        <label for="phone">Phone number</label>
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                    </div>
-                    <!-- Message input-->
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required" data-sb-can-submit="no"></textarea>
-                        <label for="message">Message</label>
-                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                    </div>
-                    <!-- Submit success message-->
-                    <!---->
-                    <!-- This is what your users will see when the form-->
-                    <!-- has successfully submitted-->
-                    <div class="d-none" id="submitSuccessMessage">
-                        <div class="text-center mb-3">
-                            <div class="fw-bolder">Form submission successful!</div>
-                            To activate this form, sign up at
-                            <br>
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                        </div>
-                    </div>
-                    <!-- Submit error message-->
-                    <!---->
-                    <!-- This is what your users will see when there is-->
-                    <!-- an error submitting the form-->
-                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                    <!-- Submit Button-->
-                    <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
+
+                    <button class="btn btn-primary btn-xl" id="submitButton" type="button" (click)="clicou()">Enviar</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+
+<section>
+    <div *ngIf="clientes.length == 0" class="alert alert-primary" role="alert">
+        This is a primary alert—check it out!
+    </div>
+    <table *ngIf="clientes.length > 0" class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Data</th>
+            <th scope="col">Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clientes">
+            <th scope="row">{{cliente.id}}</th>
+            <td>{{cliente.nome}}</td>
+            <td>{{cliente.cpf}}</td>
+            <td>{{cliente.telefone | formatarTelefone}}</td>
+            <td>{{cliente.endereco}}</td>
+            <td>{{cliente.data | date: 'dd/MM/yyyy'}}</td>
+            <td>{{cliente.valor.toString() | currency }}</td>
+          </tr>
+        </tbody>
+    </table>
+</section>
+
