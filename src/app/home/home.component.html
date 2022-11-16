@@ -95,6 +95,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
             <th scope="col">Telefone</th>
             <th scope="col">Endereço</th>
             <th scope="col">Data</th>
@@ -105,6 +106,7 @@
           <tr *ngFor="let cliente of clientes">
             <th scope="row">{{cliente.id}}</th>
             <td>{{cliente.nome}}</td>
+            <td>{{cliente.cpf}}</td>
             <td>{{cliente.telefone | formatarTelefone}}</td>
             <td>{{cliente.endereco}}</td>
             <td>{{cliente.data | date: 'dd/MM/yyyy'}}</td>
