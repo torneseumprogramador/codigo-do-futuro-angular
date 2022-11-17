@@ -19,11 +19,22 @@ export class HomeComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-    this.cliente = this.clientes[0]
+    //this.cliente = this.clientes[0]
   }
 
   clicou(){
-    alert(JSON.stringify(this.cliente))
+    let id = this.clientes.length + 1
+    let novoCliente: Cliente = {
+      id: id,
+      nome: this.cliente.nome,
+      telefone: 11999999999,
+      endereco: this.cliente.endereco,
+      data: new Date(),
+      valor: 33.45,
+      cpf: "33333333333"
+    } as Cliente
+
+    this.clientes.push(novoCliente)
   }
 
 }

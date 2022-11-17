@@ -134,7 +134,7 @@
                 <form id="contactForm">
                     <!-- Name input-->
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="nome" type="text" value="{{cliente.nome}}" placeholder="Digite o seu nome...">
+                        <input class="form-control" id="nome" name="nome" type="text" [(ngModel)]="cliente.nome" placeholder="Digite o seu nome...">
                         <label for="nome">Nome</label>
                     </div>
                     <!-- Email address input-->
