@@ -124,13 +124,6 @@
         <!-- Contact Section Form-->
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-7">
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- * * SB Forms Contact Form * *-->
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- This form is pre-integrated with SB Forms.-->
-                <!-- To make this form functional, sign up at-->
-                <!-- https://startbootstrap.com/solution/contact-forms-->
-                <!-- to get an API token!-->
                 <form id="contactForm">
                     <!-- Name input-->
                     <div class="form-floating mb-3">
@@ -161,34 +154,5 @@
     </div>
 </section>
 
-
-<section>
-    <div *ngIf="clientes.length == 0" class="alert alert-primary" role="alert">
-        This is a primary alert—check it out!
-    </div>
-    <table *ngIf="clientes.length > 0" class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Endereço</th>
-            <th scope="col">Data</th>
-            <th scope="col">Valor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let cliente of clientes">
-            <th scope="row">{{cliente.id}}</th>
-            <td>{{cliente.nome}}</td>
-            <td>{{cliente.cpf}}</td>
-            <td>{{cliente.telefone | formatarTelefone}}</td>
-            <td>{{cliente.endereco}}</td>
-            <td>{{cliente.data | date: 'dd/MM/yyyy'}}</td>
-            <td>{{cliente.valor.toString() | currency }}</td>
-          </tr>
-        </tbody>
-    </table>
-</section>
+<app-tabela [clientes]="clientes" (excluirComponente)="excluir($event)" ></app-tabela>
 

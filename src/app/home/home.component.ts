@@ -64,4 +64,15 @@ export class HomeComponent implements OnInit {
     this.valor = valorFloat.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
   }
 
+
+  excluir(cliente:Cliente){
+    let listaNova:Cliente[] = []
+    for(let i=0;i<this.clientes.length;i++){
+      if(this.clientes[i].id != cliente.id){
+        listaNova.push(this.clientes[i])
+      }
+    }
+
+    this.clientes = listaNova
+  }
 }
