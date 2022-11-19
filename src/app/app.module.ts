@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import ptBr from '@angular/common/locales/pt';
 import { FormsModule } from '@angular/forms';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -24,7 +25,8 @@ registerLocaleData(ptBr);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CurrencyMaskModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },

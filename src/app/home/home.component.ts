@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   public cliente:Cliente = {} as Cliente
+  public valor:String = ""
+  public valorPlugin:String = ""
 
   public clientes:Cliente[] = [
     { id: 1, nome: "Leandro", telefone: 11999999999, endereco: "Rua teste 123", data: new Date(), valor: 33.45, cpf: "33333333333"},
@@ -23,6 +25,8 @@ export class HomeComponent implements OnInit {
   }
 
   clicou(){
+    console.log(this.valorPlugin)
+
     let id = this.clientes.length + 1
     let novoCliente: Cliente = {
       id: id,
@@ -30,11 +34,34 @@ export class HomeComponent implements OnInit {
       telefone: 11999999999,
       endereco: this.cliente.endereco,
       data: new Date(),
-      valor: 33.45,
+      valor: this.convertNumber(this.valor),
       cpf: "33333333333"
     } as Cliente
 
     this.clientes.push(novoCliente)
+  }
+
+  private convertNumber(valor:String): Number{
+    let valorMatch = valor.match(/\d|\.|,/g)
+    if(valorMatch == null) return 0
+    let valorBrasileiro = valorMatch.join("")
+    let valorAmericano = valorBrasileiro.replace(".", "").replace(",", ".")
+    return Number(valorAmericano)
+  }
+
+  somenteNumero(){
+    let valorMatch = this.valor.match(/\d|\.|,/g)
+    if(valorMatch == null){
+      this.valor = ""
+      return
+    }
+
+    this.valor = valorMatch.join("")
+  }
+
+  marcara(){
+    let valorFloat = Number(this.valor)
+    this.valor = valorFloat.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
   }
 
 }

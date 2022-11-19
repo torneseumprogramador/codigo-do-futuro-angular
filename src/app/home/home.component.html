@@ -143,6 +143,17 @@
                         <label for="email">Endereço</label>
                     </div>
 
+                    <!-- Email address input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="valor" name="valor" type="text" (keyup)="somenteNumero()" (blur)="marcara()" [(ngModel)]="valor" placeholder="Digite o valor">
+                        <label for="email">Valor</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="valor" name="valorPlugin" type="text" currencyMask [(ngModel)]="valorPlugin" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  placeholder="Digite o valor Plugin">
+                        <label for="email">Valor Plugin</label>
+                    </div>
+
                     <button class="btn btn-primary btn-xl" id="submitButton" type="button" (click)="clicou()">Enviar</button>
                 </form>
             </div>
