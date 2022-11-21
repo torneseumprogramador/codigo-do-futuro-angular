@@ -11,6 +11,7 @@ export class ClientesNotificacaoComponent implements OnInit {
   constructor(public clienteObserverServicoService: ClienteObserverServicoService) {
   }
 
+
   ngOnInit(): void {
   }
 

@@ -13,7 +13,7 @@ export class ClienteObserverServicoService {
   public quantidade:Number = 0
 
   atualizaQuantidade(){
-    console.log("Entrou no metodo")
+    console.log("--- Entrou no metodo ---")
     this.quantidade = ClienteServico.buscaClientes().length;
   }
 }
