@@ -13,6 +13,10 @@ import { FormComponent } from './paginas/form/form.component';
 import { HomeComponent } from './paginas/home/home.component';
 import { FormatarTelefonePipe } from './pipes/formatar-telefone.pipe';
 import { ContactListComponent } from './paginas/contact-list/contact-list.component';
+import { ClientesNotificacaoComponent } from './componentes/clientes-notificacao/clientes-notificacao.component';
+import { PortfolioComponent } from './paginas/portfolio/portfolio.component';
+import { SobreComponent } from './paginas/sobre/sobre.component';
+import { NaoEncontradaComponent } from './paginas/nao-encontrada/nao-encontrada.component';
 
 registerLocaleData(ptBr);
 
@@ -24,7 +28,11 @@ registerLocaleData(ptBr);
     HomeComponent,
     FormatarTelefonePipe,
     FormComponent,
-    ContactListComponent
+    ContactListComponent,
+    ClientesNotificacaoComponent,
+    PortfolioComponent,
+    SobreComponent,
+    NaoEncontradaComponent
   ],
   imports: [
     BrowserModule,

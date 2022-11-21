@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
+import { ClienteObserverServicoService } from 'src/app/servicos/clienteObserverServico.service';
 import { ClienteServico } from 'src/app/servicos/clienteServico';
 
 @Component({
@@ -12,7 +13,8 @@ export class FormComponent implements OnInit {
 
   constructor(
     private router:Router,
-    private routerParams: ActivatedRoute
+    private routerParams: ActivatedRoute,
+    private clienteObserverServicoService: ClienteObserverServicoService
   ) { }
 
   public titulo:String = "Novo cliente"
@@ -46,6 +48,7 @@ export class FormComponent implements OnInit {
       });
     }
 
+    this.clienteObserverServicoService.atualizaQuantidade();
     this.router.navigateByUrl("/contatos")
   }
 
