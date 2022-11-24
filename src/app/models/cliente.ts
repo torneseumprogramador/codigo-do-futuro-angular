@@ -1,8 +1,8 @@
 export interface Cliente {
     id: Number
-    nome: String
+    nome: String | undefined
     telefone: Number
-    endereco: String
+    endereco: String | undefined
     data: Date
     valor: Number
     cpf: String

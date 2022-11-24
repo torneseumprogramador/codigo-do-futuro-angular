@@ -19,22 +19,26 @@ export class ContactListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.clienteServico = new ClienteServico(this.http)
     this.listaClientes()
   }
   
+  private clienteServico:ClienteServico = {} as ClienteServico
   public clientes:Cliente[] | undefined = []
 
   private async listaClientes(){
-    this.clientes = await new ClienteServico(this.http).lista();
+    this.clientes = await this.clienteServico.lista();
   }
 
   novo(){
     this.router.navigateByUrl("/form")
   }
 
-  excluir(cliente:Cliente){
-    ClienteServico.excluirCliente(cliente)
-    this.clientes = ClienteServico.buscaClientes()
-    this.clienteObserverServicoService.atualizaQuantidade();
+  async excluir(cliente:Cliente){
+    if(confirm("Confirma ?")){
+      await this.clienteServico.excluirPorId(cliente.id)
+      this.clientes = await this.clienteServico.lista()
+      this.clienteObserverServicoService.atualizaQuantidade();
+    }
   }
 }

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
@@ -13,37 +14,44 @@ export class FormComponent implements OnInit {
 
   constructor(
     private router:Router,
+    private http:HttpClient,
     private routerParams: ActivatedRoute,
     private clienteObserverServicoService: ClienteObserverServicoService
   ) { }
 
+  private clienteServico:ClienteServico = {} as ClienteServico
   public titulo:String = "Novo cliente"
-  public cliente:Cliente = {} as Cliente
-  public valor:String = ""
+  public cliente:Cliente | undefined = {} as Cliente
+  public valor:any = ""
   public valorPlugin:String = ""
 
   ngOnInit(): void {
+    this.clienteServico = new ClienteServico(this.http)
     let id:Number = this.routerParams.snapshot.params['id']
     if(id){
-      this.titulo = "Alterando cliente"
-      this.cliente = ClienteServico.buscaClientePorId(id)
-      this.valor = this.cliente.valor.toString()
+      this.editaCliente(id)
     }
   }
 
+  private async editaCliente(id: Number) {
+    this.titulo = "Alterando cliente"
+    this.cliente = await this.clienteServico.buscaPorId(id)
+    this.valor = this.cliente?.valor.toString()
+  }
+
   salvar(){
-    if(this.cliente.id > 0){
+    if(this.valor && this.cliente && this.cliente.id > 0){
       this.cliente.valor = this.convertNumber(this.valor)
-      ClienteServico.alteraCliente(this.cliente)
+      this.clienteServico.update(this.cliente)
     }
     else{
-      ClienteServico.adicionaCliente({
+      this.clienteServico.criar({
         id: 0,
-        nome: this.cliente.nome,
+        nome: this.cliente?.nome,
         telefone: 11999999999,
-        endereco: this.cliente.endereco,
+        endereco: this.cliente?.endereco,
         data: new Date(),
-        valor: this.convertNumber(this.valor),
+        valor: this.convertNumber(this.valor ),
         cpf: "33333333333"
       });
     }

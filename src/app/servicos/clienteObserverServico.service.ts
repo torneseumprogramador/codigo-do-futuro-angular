@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ClienteServico } from './clienteServico';
 
@@ -6,14 +7,14 @@ import { ClienteServico } from './clienteServico';
 })
 export class ClienteObserverServicoService {
 
-  constructor() { 
+  constructor(private http:HttpClient) { 
     this.atualizaQuantidade()
   }
 
   public quantidade:Number = 0
 
-  atualizaQuantidade(){
-    console.log("--- Entrou no metodo ---")
-    this.quantidade = ClienteServico.buscaClientes().length;
+  async atualizaQuantidade(){
+    let lista = await new ClienteServico(this.http).lista();
+    this.quantidade = lista ? lista.length : 0;
   }
 }

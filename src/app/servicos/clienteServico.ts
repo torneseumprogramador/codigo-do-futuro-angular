@@ -13,72 +13,21 @@ export class ClienteServico{
         return clientes;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    static buscaClientePorId(id: Number): Cliente {
-        let cliente:Cliente = {} as Cliente
-
-        for(let i=0; i<ClienteServico.clientes.length; i++){
-            let clienteDb = ClienteServico.clientes[i]
-            if(clienteDb.id == id){
-                cliente = clienteDb
-                break
-            }
-        }
-
-        return cliente;
+    public async criar(cliente:Cliente): Promise<Cliente | undefined> {
+        let clienteRest:Cliente | undefined = await firstValueFrom(this.http.post<Cliente>(`${environment.api}/clientes/`, cliente))
+        return clienteRest;
     }
 
-    private static clientes: Cliente[] = [{
-        id: 1,
-        nome: "Luana",
-        telefone: 1212111-1111,
-        endereco: "Rua teste",
-        data: new Date(),
-        valor: 22.22,
-        cpf: "333.222.222-33"
-    }]
-
-    public static buscaClientes():Cliente[]{
-        return ClienteServico.clientes
+    public async update(cliente:Cliente): Promise<Cliente | undefined> {
+        let clienteRest:Cliente | undefined = await firstValueFrom(this.http.put<Cliente>(`${environment.api}/clientes/${cliente.id}`, cliente))
+        return clienteRest;
     }
 
-    public static adicionaCliente(cliente:Cliente):void{
-        cliente.id = ClienteServico.buscaClientes().length + 1
-        ClienteServico.clientes.push(cliente)
+    public async buscaPorId(id:Number): Promise<Cliente | undefined> {
+        return await firstValueFrom(this.http.get<Cliente | undefined>(`${environment.api}/clientes/${id}`))
     }
 
-    public static alteraCliente(cliente:Cliente):void{
-        for(let i=0; i<ClienteServico.clientes.length; i++){
-            let clienteDb = ClienteServico.clientes[i]
-            if(clienteDb.id == cliente.id){
-                clienteDb = {
-                    ...cliente
-                }
-                break
-            }
-        }
-    }
-
-    public static excluirCliente(cliente:Cliente):void{
-        let listaNova = []
-        for(let i=0; i<ClienteServico.clientes.length; i++){
-            let clienteDb = ClienteServico.clientes[i]
-            if(clienteDb.id != cliente.id){
-                listaNova.push(clienteDb)
-            }
-        }
-
-        ClienteServico.clientes = listaNova
+    public excluirPorId(id:Number) {
+        firstValueFrom(this.http.delete(`${environment.api}/clientes/${id}`))
     }
 }
