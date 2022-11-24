@@ -17,10 +17,10 @@
       <!-- Contact Section Form-->
       <div class="row justify-content-center">
           <div class="col-lg-8 col-xl-7">
-            <div *ngIf="clientes.length == 0" class="alert alert-primary" role="alert">
+            <div *ngIf="clientes && clientes.length == 0" class="alert alert-primary" role="alert">
                 Não existe clientes cadastrados
             </div>
-            <table *ngIf="clientes.length > 0" class="table">
+            <table *ngIf="clientes && clientes.length > 0" class="table">
                 <thead>
                   <tr>
                     <th scope="col">ID</th>

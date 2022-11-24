@@ -1,6 +1,29 @@
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Cliente } from "../models/cliente";
 
+import { firstValueFrom } from 'rxjs';
+
 export class ClienteServico{
+
+    constructor(private http:HttpClient) { }
+
+    public async lista(): Promise<Cliente[] | undefined> {
+        let clientes:Cliente[] | undefined = await firstValueFrom(this.http.get<Cliente[]>(`${environment.api}/clientes`))
+        return clientes;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     static buscaClientePorId(id: Number): Cliente {
         let cliente:Cliente = {} as Cliente
