@@ -18,6 +18,7 @@ import { NaoEncontradaComponent } from './paginas/nao-encontrada/nao-encontrada.
 import { PortfolioComponent } from './paginas/portfolio/portfolio.component';
 import { SobreComponent } from './paginas/sobre/sobre.component';
 import { FormatarTelefonePipe } from './pipes/formatar-telefone.pipe';
+import { LoginComponent } from './paginas/login/login.component';
 
 registerLocaleData(ptBr);
 
@@ -33,7 +34,8 @@ registerLocaleData(ptBr);
     ClientesNotificacaoComponent,
     PortfolioComponent,
     SobreComponent,
-    NaoEncontradaComponent
+    NaoEncontradaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

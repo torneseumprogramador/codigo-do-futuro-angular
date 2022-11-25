@@ -5,7 +5,7 @@ import { ClienteServico } from './clienteServico';
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteObserverServicoService {
+export class ClienteObserverService {
 
   constructor(private http:HttpClient) { 
     this.atualizaQuantidade()

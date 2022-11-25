@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
-import { ClienteObserverServicoService } from 'src/app/servicos/clienteObserverServico.service';
+import { ClienteObserverService } from 'src/app/servicos/clienteObserver.service';
 import { ClienteServico } from 'src/app/servicos/clienteServico';
+import { LogadoService } from 'src/app/servicos/logado.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -15,10 +16,13 @@ export class ContactListComponent implements OnInit {
   constructor(
     private http:HttpClient,
     private router:Router,
-    private clienteObserverServicoService: ClienteObserverServicoService
+    private logadoService: LogadoService,
+    private clienteObserverService: ClienteObserverService
   ) { }
 
   ngOnInit(): void {
+    if(this.logadoService.redirecionaLoginNaoLogado()) return
+    
     this.clienteServico = new ClienteServico(this.http)
     this.listaClientes()
   }
@@ -38,7 +42,7 @@ export class ContactListComponent implements OnInit {
     if(confirm("Confirma ?")){
       await this.clienteServico.excluirPorId(cliente.id)
       this.clientes = await this.clienteServico.lista()
-      this.clienteObserverServicoService.atualizaQuantidade();
+      this.clienteObserverService.atualizaQuantidade();
     }
   }
 }

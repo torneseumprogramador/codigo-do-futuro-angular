@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
-import { ClienteObserverServicoService } from 'src/app/servicos/clienteObserverServico.service';
+import { ClienteObserverService } from 'src/app/servicos/clienteObserver.service';
 import { ClienteServico } from 'src/app/servicos/clienteServico';
 
 @Component({
@@ -16,7 +16,7 @@ export class FormComponent implements OnInit {
     private router:Router,
     private http:HttpClient,
     private routerParams: ActivatedRoute,
-    private clienteObserverServicoService: ClienteObserverServicoService
+    private clienteObserverService: ClienteObserverService
   ) { }
 
   private clienteServico:ClienteServico = {} as ClienteServico
@@ -56,7 +56,7 @@ export class FormComponent implements OnInit {
       });
     }
 
-    this.clienteObserverServicoService.atualizaQuantidade();
+    this.clienteObserverService.atualizaQuantidade();
     this.router.navigateByUrl("/contatos")
   }
 

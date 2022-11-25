@@ -10,12 +10,17 @@
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" routerLink="/portfolio">Portfolio</a></li>
                 <li class="nav-item mx-0 mx-lg-1">
                     <a class="nav-link py-3 px-0 px-lg-3 rounded" routerLink="/sobre">
-                        Sobre - ( {{clienteObserverServicoService.quantidade}} )
+                        Sobre - ( {{clienteObserverService.quantidade}} )
                     </a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
                     <a class="nav-link py-3 px-0 px-lg-3 rounded" routerLink="/contatos">
                         <span>Clientes</span> <app-clientes-notificacao></app-clientes-notificacao>
+                    </a>
+                </li>
+                <li *ngIf="logadoService.logado" class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded" href="javascript:;" (click)="logadoService.deslogar()">
+                        <span>Sair</span>
                     </a>
                 </li>
             </ul>

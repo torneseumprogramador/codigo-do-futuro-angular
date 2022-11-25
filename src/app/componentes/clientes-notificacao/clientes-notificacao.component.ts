@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClienteObserverServicoService } from 'src/app/servicos/clienteObserverServico.service';
+import { ClienteObserverService } from 'src/app/servicos/clienteObserver.service';
 
 @Component({
   selector: 'app-clientes-notificacao',
@@ -8,7 +8,7 @@ import { ClienteObserverServicoService } from 'src/app/servicos/clienteObserverS
 })
 export class ClientesNotificacaoComponent implements OnInit {
 
-  constructor(public clienteObserverServicoService: ClienteObserverServicoService) {
+  constructor(public clienteObserverService: ClienteObserverService) {
   }
 
 
