@@ -16,13 +16,10 @@ export class ContactListComponent implements OnInit {
   constructor(
     private http:HttpClient,
     private router:Router,
-    private logadoService: LogadoService,
     private clienteObserverService: ClienteObserverService
   ) { }
 
   ngOnInit(): void {
-    if(this.logadoService.redirecionaLoginNaoLogado()) return
-    
     this.clienteServico = new ClienteServico(this.http)
     this.listaClientes()
   }

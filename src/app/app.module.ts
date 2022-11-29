@@ -19,6 +19,8 @@ import { PortfolioComponent } from './paginas/portfolio/portfolio.component';
 import { SobreComponent } from './paginas/sobre/sobre.component';
 import { FormatarTelefonePipe } from './pipes/formatar-telefone.pipe';
 import { LoginComponent } from './paginas/login/login.component';
+import { LoginGuard } from './servicos/login.guard';
+import { PermissaoGuard } from './servicos/permissao.guard';
 
 registerLocaleData(ptBr);
 
@@ -49,7 +51,9 @@ registerLocaleData(ptBr);
     {
       provide: DEFAULT_CURRENCY_CODE,
       useValue: 'BRL',
-    }
+    },
+    LoginGuard,
+    PermissaoGuard
   ],
   bootstrap: [AppComponent]
 })

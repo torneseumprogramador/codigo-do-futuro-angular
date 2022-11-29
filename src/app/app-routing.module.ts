@@ -7,15 +7,28 @@ import { LoginComponent } from './paginas/login/login.component';
 import { NaoEncontradaComponent } from './paginas/nao-encontrada/nao-encontrada.component';
 import { PortfolioComponent } from './paginas/portfolio/portfolio.component';
 import { SobreComponent } from './paginas/sobre/sobre.component';
+import { LoginGuard } from './servicos/login.guard';
+import { PermissaoGuard } from './servicos/permissao.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'portfolio', component: PortfolioComponent },
   { path: 'sobre', component: SobreComponent },
-  { path: 'form', component: FormComponent },
-  { path: 'form-alterar/:id', component: FormComponent },
-  { path: 'contatos', component: ContactListComponent },
+  { path: 'form', component: FormComponent, canActivate: [LoginGuard] },
+  { 
+    path: 'form', 
+    // canDeactivate
+    canActivate: [LoginGuard], 
+    canActivateChild: [PermissaoGuard], // para children abaixo
+    children: [
+      {
+          path: 'alterar/:id',
+          component: FormComponent
+      }
+    ]
+  },
+  { path: 'contatos', component: ContactListComponent, canActivate: [LoginGuard] },
   { path: '**', component: NaoEncontradaComponent },
 ];
 

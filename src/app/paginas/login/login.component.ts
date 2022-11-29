@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LogadoService } from 'src/app/servicos/logado.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(
+    private router:Router,
+    private logadoService:LogadoService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +24,7 @@ export class LoginComponent implements OnInit {
   logar(){
     if(this.email === "danilo@alunos.com" && this.senha === "123456"){
       localStorage.setItem("logado", "true")
+      this.logadoService.verificaLogado()
       this.router.navigateByUrl("/contatos")
     }
     else{
