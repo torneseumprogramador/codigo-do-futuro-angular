@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Cliente } from '../models/cliente';
 
 @Component({
@@ -6,7 +6,11 @@ import { Cliente } from '../models/cliente';
   templateUrl: './tabela.component.html',
   styleUrls: ['./tabela.component.css']
 })
-export class TabelaComponent implements OnInit {
+export class TabelaComponent implements OnInit, OnChanges {
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(`=======[change do componente]========= [${JSON.stringify(changes)}] ======`)
+  }
 
   constructor() { }
 
