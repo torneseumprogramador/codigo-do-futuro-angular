@@ -7,6 +7,7 @@ import { LoginComponent } from './paginas/login/login.component';
 import { NaoEncontradaComponent } from './paginas/nao-encontrada/nao-encontrada.component';
 import { PortfolioComponent } from './paginas/portfolio/portfolio.component';
 import { SobreComponent } from './paginas/sobre/sobre.component';
+import { FormCancelGuard } from './servicos/formCancel.guard';
 import { LoginGuard } from './servicos/login.guard';
 import { PermissaoGuard } from './servicos/permissao.guard';
 
@@ -15,10 +16,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'portfolio', component: PortfolioComponent },
   { path: 'sobre', component: SobreComponent },
-  { path: 'form', component: FormComponent, canActivate: [LoginGuard] },
   { 
     path: 'form', 
-    // canDeactivate
+    component: FormComponent, 
+    canDeactivate: [FormCancelGuard],
     canActivate: [LoginGuard], 
     canActivateChild: [PermissaoGuard], // para children abaixo
     children: [
