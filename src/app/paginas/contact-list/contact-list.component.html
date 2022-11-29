@@ -42,8 +42,8 @@
                     <td>{{cliente.endereco}}</td>
                     <td>{{cliente.data | date: 'dd/MM/yyyy'}}</td>
                     <td>{{cliente.valor.toString() | currency }}</td>
-                    <td><a class="btn btn-warning" routerLink="/form-alterar/{{cliente.id}}">Alterar</a></td>
-                    <td><button class="btn btn-danger" (click)="excluir(cliente)">Excluir</button></td>
+                    <td><a class="btn btn-warning" routerLink="/form/{{cliente.id}}">Alterar</a></td>
+                    <td><button class="btn btn-danger" [disabled]="!logadoService.adm" (click)="excluir(cliente)">Excluir</button></td>
                   </tr>
                 </tbody>
             </table>

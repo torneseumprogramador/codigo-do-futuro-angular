@@ -7,28 +7,26 @@ import { Router } from '@angular/router';
 export class LogadoService {
 
   constructor(private router:Router) { 
-    this.verificaLogado()
+    this.notificar()
   }
 
   public logado:boolean = false
+  public adm:boolean = false
 
   public verificaLogado():boolean{
-    this.logado = localStorage.getItem("logado") ? true : false
+    this.notificar()
     return this.logado
   }
 
-  public deslogar(){
-    localStorage.removeItem("logado")
-    this.logado = false
-    this.router.navigateByUrl("/")
+  public notificar(){
+    this.logado = localStorage.getItem("logado") ? true : false
+    this.adm = localStorage.getItem("adm") ? true : false
   }
 
-  public redirecionaLoginNaoLogado(): boolean{
-    if(!this.verificaLogado()){
-      this.router.navigateByUrl("/login")
-      return true
-    }
-
-    return false
+  public deslogar(){
+    localStorage.clear()
+    this.logado = false
+    this.adm = false
+    this.router.navigateByUrl("/")
   }
 }
