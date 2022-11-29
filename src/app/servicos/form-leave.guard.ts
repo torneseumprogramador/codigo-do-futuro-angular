@@ -12,6 +12,7 @@ export class FormLeaveGuard implements CanDeactivate<FormComponent> {
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      component.titulo = "teste 12345";
       if(component && component.cliente?.nome)
         return confirm("Você não preencheu o nome, deseja relamente sair?");
       

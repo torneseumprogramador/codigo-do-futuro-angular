@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
 import { ClienteObserverService } from 'src/app/servicos/clienteObserver.service';
@@ -10,7 +10,7 @@ import { ClienteServico } from 'src/app/servicos/clienteServico';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
 
   constructor(
     private router:Router,
@@ -19,13 +19,19 @@ export class FormComponent implements OnInit {
     private clienteObserverService: ClienteObserverService
   ) { }
 
+  
   private clienteServico:ClienteServico = {} as ClienteServico
   public titulo:String = "Novo cliente"
   public cliente:Cliente | undefined = {} as Cliente
   public valor:any = ""
   public valorPlugin:String = ""
 
+  ngOnDestroy(): void {
+    console.log("=======[saindo do componente]=========")
+  }
+
   ngOnInit(): void {
+    console.log("=======[iniciando o componente]=========")
     this.clienteServico = new ClienteServico(this.http)
     let id:Number = this.routerParams.snapshot.params['id']
     if(id){
